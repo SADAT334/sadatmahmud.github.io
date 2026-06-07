@@ -22,7 +22,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 const weatherStatusEl = document.getElementById("weather-status");
 
 async function getWeatherData() {
-  const API_KEY = "45530f0ee700a4e2504ca46a8b129690";
+  const API_KEY = "f8189dc914d6a09cee33cddb4aa2cf0c";
   const CITY = "Dortmund";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric`;
   try {
