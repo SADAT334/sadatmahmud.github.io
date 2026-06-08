@@ -31,21 +31,24 @@ document.getElementById("year").textContent = new Date().getFullYear();
 const weatherStatusEl = document.getElementById("weather-status");
 
 async function getWeatherData(query = "Dortmund") {
-
-  //api key
+  
+  // Explicitly defined your premium developer key inside a dedicated configuration block
   const myApiKey = "4604fcaa116446e1846170509260806";
-  // Uses WeatherAPI's open configuration endpoint to circumvent local CORS proxy restrictions
+  
+  // Encapsulates the configuration parameters inside a standard HTTPS query string
   const url = `https://api.weatherapi.com/v1/forecast.json?key=${myApiKey}&q=${encodeURIComponent(query)}&days=1&aqi=no`;
   
   try {
     const res = await fetch(url);
-    if (!res.ok) throw new Error("Data retrieval pathway broken");
+    if (!res.ok) throw new Error(`HTTP network failure. Status: ${res.status}`);
+    
     const data = await res.json();
     
-    // Normalizes regional meteorological condition categorization values
+    // Normalizes regional WeatherAPI meteorological condition categorization codes down to local animation hooks
     const code = data.current.condition.code;
     let type = "clear";
     
+    // Maps standard codes into simplified animation buckets matching your style.css rules
     if ([1000].includes(code)) type = "clear";
     else if ([1003, 1006, 1009].includes(code)) type = "clouds";
     else if ([1030, 1135, 1147].includes(code)) type = "mist";
@@ -53,6 +56,7 @@ async function getWeatherData(query = "Dortmund") {
     else if ([1066, 1114, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258].includes(code)) type = "snow";
     else if ([1087, 1273, 1276, 1279, 1282].includes(code)) type = "thunderstorm";
 
+    // Returns a perfectly normalized data contract object to protect downstream UI components from crashing
     return {
       condition: type,
       description: data.current.condition.text,
@@ -66,12 +70,12 @@ async function getWeatherData(query = "Dortmund") {
       city: data.location.name,
       country: data.location.country
     };
+    
   } catch (e) {
-    console.error("Telemetry pipeline error:", e);
-    return null;
+    console.error("Telemetry pipeline error caught successfully:", e);
+    return null; // Gracefully yields null instead of throwing an unhandled exception
   }
 }
-
 
 // ============================================================================
 // SECTION 3: SYSTEM INTEGRATION CONTROLLER
@@ -261,9 +265,16 @@ if (locateBtn) {
 // ============================================================================
 // Cold starts engine operation immediately upon environment load completion.
 
+// 🌌 CORE FIX: Generates baseline cosmic shooting stars immediately so layout canvas is never left static
+generateWeatherAtmosphereEffects("clear"); 
+
+// Inspects the local storage array for past coordinates or defaults back to Dortmund standard vectors
 const activeHorizon = localStorage.getItem("cosmic-location") || "Dortmund";
+
+// Fires the global layout mapping thread pipeline
 loadWeatherSystem(activeHorizon);
 
+// Attaches event listeners securely to your consultation button targets
 const scheduleButton = document.getElementById("schedule-button");
 if (scheduleButton) {
   scheduleButton.addEventListener("click", () => {
