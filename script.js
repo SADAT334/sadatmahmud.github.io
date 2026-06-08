@@ -274,10 +274,19 @@ const activeHorizon = localStorage.getItem("cosmic-location") || "Dortmund";
 // Fires the global layout mapping thread pipeline
 loadWeatherSystem(activeHorizon);
 
-// Attaches event listeners securely to your consultation button targets
+// ── FUNCTIONAL APPOINTMENT PORTAL CONFIGURATION ───────────────────────────
 const scheduleButton = document.getElementById("schedule-button");
+
 if (scheduleButton) {
-  scheduleButton.addEventListener("click", () => {
-    window.open("https://calendly.com/", "_blank");
+  scheduleButton.addEventListener("click", (event) => {
+    // Stops the default anchor behavior from forcing a page refresh
+    event.preventDefault(); 
+    
+    // Injects the interactive modal schedule layout seamlessly on top of your site
+    Calendly.initPopupWidget({
+      url: 'https://calendly.com/sadatmahmud334/30min' // 👈 Paste your exact copied link here
+    });
+    
+    return false;
   });
 }
