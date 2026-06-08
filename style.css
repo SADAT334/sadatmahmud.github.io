@@ -29,7 +29,7 @@ body {
 }
 
 /* ============================================================================
-   REPLACEMENTS IN SECTION 2: THE INTERSTELLAR ANOMALY EFFECTS
+   SECTION 2: THE INTERSTELLAR ANOMALY EFFECTS
    ============================================================================ */
 
 /* The elegant, far-away micro-black hole gravitational anomaly system */
@@ -62,7 +62,6 @@ body {
 }
 
 /* The horizontal glowing matter disk tracking around the core edge */
-/* Extended and layered with a multi-stage time dilation warp animation */
 .bh-accretion-disk {
   position: absolute;
   width: 190px;
@@ -85,7 +84,6 @@ body {
 }
 
 /* 🌌 THE TRUE INTERSTELLAR TIME DILATION ANIMATION MATRIX */
-/* This spins the accretion disk while smoothly fluctuating its physical scale and orientation */
 @keyframes interstellarWarp {
   0% {
     transform: rotate(0deg) scaleX(1) scaleY(1);
@@ -113,7 +111,6 @@ body {
 /* ============================================================================
    SECTION 3: HIGH-CONTRAST GLASSMORPHISM (READABILITY MECHANICS)
    ============================================================================ */
-/* Dark glass filters protect text nodes from competing with moving background lights */
 .main-header {
   position: sticky;
   top: 0;
@@ -257,7 +254,7 @@ body {
 
 
 /* ============================================================================
-   SECTION 5: METEOROLOGICAL PARTICLE FLUID ENGINEVECTORS
+   SECTION 5: METEOROLOGICAL PARTICLE FLUID ENGINE VECTORS
    ============================================================================ */
 #weather-fx {
   position: fixed;
@@ -267,7 +264,6 @@ body {
   overflow: hidden;
 }
 
-/* 🌠 VECTOR A: HIGH-SPEED STREAMING SHOOTING STARS */
 .shooting-star {
   position: absolute;
   width: 2px;
@@ -286,7 +282,6 @@ body {
   100% { transform: translateX(-350px) translateY(350px) scale(0.2); opacity: 0; }
 }
 
-/* 🌠 VECTOR B: PRECIPITATION FLUID OVERLAYS */
 .cosmic-rain {
   position: absolute;
   top: -40px;
@@ -300,7 +295,6 @@ body {
   to { transform: translateY(110vh); }
 }
 
-/* 🌠 VECTOR C: ICE FLAKE ROTATING PARTICLES */
 .cosmic-snow {
   position: absolute;
   top: -10px;
@@ -318,7 +312,6 @@ body {
   100% { transform: translateY(110vh) translateX(-15px); }
 }
 
-/* 🌠 VECTOR D: NEBULA LIGHTNING FLASH MODES */
 .nebula-lightning {
   position: absolute;
   inset: 0;
@@ -333,7 +326,7 @@ body {
 }
 
 
-//* ============================================================================
+/* ============================================================================
    SECTION 6: WRAPPERS AND PLACEMENT MATRICES (CLEANED & OPTIMIZED)
    ============================================================================ */
 .hero {
@@ -359,16 +352,14 @@ body {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  /* 💡 PREMIUM FIX: 'cover' fills the entire frame, while 'center 20%' shifts 
-     the image framing down so your face isn't cut off at the top! */
-  object-fit: cover; 
-  object-position: center 20%;
+  object-fit: contain; 
+  background-color: #04080e; 
   border: 3px solid var(--accent-emerald);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.25), 
+              0 25px 60px rgba(0, 0, 0, 0.9);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Duplicates successfully removed down to one smooth animation trigger */
 .profile-img:hover {
   transform: scale(1.05);
 }
@@ -508,7 +499,85 @@ body {
 }
 
 
-/* Text for cinematic text of about section */
+/* ============================================================================
+   SECTION 8: HIGH-CONTRAST INTERACTIVE CONTACT LINKS
+   ============================================================================ */
+.contact-subtitle {
+  color: #94a3b8;
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #090f18; /* Solid deep premium dark background */
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 1.5rem 1.25rem;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-details h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff; /* Crisp pure white title */
+  letter-spacing: 0.02em;
+}
+
+.contact-details p {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #cbd5e1; /* Clear bright info gray text */
+  word-break: break-all;
+}
+
+.contact-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.email-glow     { color: #f97316; }
+.linkedin-glow  { color: #38bdf8; }
+.github-glow    { color: #ffffff; }
+.whatsapp-glow  { color: #22c55e; }
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  background: #0d1724;
+}
+
+.contact-card:hover:nth-child(1) { border-color: #f97316; box-shadow: 0 15px 30px rgba(249, 115, 22, 0.25); }
+.contact-card:hover:nth-child(2) { border-color: #38bdf8; box-shadow: 0 15px 30px rgba(56, 189, 248, 0.25); }
+.contact-card:hover:nth-child(3) { border-color: #ffffff; box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15); }
+.contact-card:hover:nth-child(4) { border-color: #22c55e; box-shadow: 0 15px 30px rgba(34, 197, 94, 0.25); }
+
+.contact-card:hover .contact-icon {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
 /* ============================================================================
    SECTION 9: GRAPHICALLY ARTISTIC COSMIC ABOUT SECTION
    ============================================================================ */
@@ -528,7 +597,6 @@ body {
   margin-top: 0.75rem;
 }
 
-/* Split Hook Section */
 .about-hero-split {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -581,7 +649,6 @@ body {
   gap: 0.4rem;
 }
 
-/* Counter Telemetry Cards */
 .telemetry-counter-box {
   display: flex;
   flex-direction: column;
@@ -620,7 +687,6 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* Timeline Components */
 .subsection-title {
   font-size: 1.25rem;
   letter-spacing: 0.05em;
@@ -695,7 +761,6 @@ body {
   max-width: 850px;
 }
 
-/* Addictive Bento Grid System */
 .bento-lifestyle-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -746,7 +811,6 @@ body {
   line-height: 1.6;
 }
 
-/* Immersive Neon Lighting Hover Physics */
 .bento-glow-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -769,7 +833,6 @@ body {
 .culinary-box:hover { box-shadow: 0 15px 40px rgba(16, 185, 129, 0.05); }
 .intelligence-box:hover { box-shadow: 0 15px 40px rgba(56, 189, 248, 0.05); }
 
-/* Responsive Media Compilers */
 @media (max-width: 968deg) {
   .about-hero-split {
     grid-template-columns: 1fr;
