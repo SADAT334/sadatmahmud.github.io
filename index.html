@@ -7,6 +7,8 @@
   
   <title>Sadat Mahmud | Data & Insights Portfolio</title>
   
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -14,20 +16,24 @@
 
   <div id="cosmic-bg" aria-hidden="true">
     
-    <div class="black-hole-core"></div>
+    <div class="aurora-borealis-ribbon"></div>
     
-    <div class="black-hole-accretion"></div>
+    <div class="interstellar-nebula-cluster"></div>
+    
+    <div class="ambient-starfield"></div>
+
+    <div class="distant-black-hole">
+      <div class="bh-singularity"></div>
+      <div class="bh-accretion-disk"></div>
+    </div>
     
   </div>
-
 
 
   <div id="weather-fx" aria-hidden="true"></div>
 
 
-
   <header class="main-header">
-    
     <div class="logo">
       <span class="logo-mark">S</span>
       <span class="logo-text">Sadat Mahmud</span>
@@ -36,11 +42,9 @@
     <nav class="main-nav">
       <button class="nav-link" id="home-btn" data-i18n="nav_home">Home</button>
       <button class="nav-link" data-target="#about" data-i18n="nav_about">About</button>
-      
       <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projects & Case Studies</a>
       <a href="blog.html" class="nav-link" data-i18n="nav_blog">Blog Posts</a>
       <a href="gallery.html" class="nav-link" data-i18n="nav_gallery">Photo Gallery</a>
-      
       <button class="nav-link" data-target="#contact" data-i18n="nav_contact">Contact</button>
     </nav>
 
@@ -48,15 +52,12 @@
   </header>
 
 
-
   <main>
-    
     <section class="hero" id="home">
       <div class="hero-content">
         
         <div class="hero-text">
           <h1 data-i18n="hero_heading">Data, stories, and meaningful decisions.</h1>
-          
           <p class="hero-subtitle" data-i18n="hero_subtitle">
             I turn complex data into clear narratives that help people and businesses act with confidence.
           </p>
@@ -64,7 +65,6 @@
 
         <div class="hero-profile">
           <img src="Assets/foto.jpg" alt="Profile picture of Sadat Mahmud" class="profile-img" />
-          
           <div class="profile-caption">
             <h2>Sadat Mahmud</h2>
             <p data-i18n="hero_role">Data Analyst · Storyteller · Problem Solver</p>
@@ -72,7 +72,6 @@
         </div>
 
       </div>
-
 
 
       <div class="mission-vision">
@@ -97,7 +96,6 @@
       </div>
 
 
-
       <div class="toolkit">
         
         <div class="toolkit-item weather-card" id="weather-card">
@@ -106,19 +104,16 @@
             <div>
               <div class="wc-city-row">
                 <span class="wc-city" id="wc-city">📍 Dortmund, DE</span>
-                
                 <button class="wc-locate-btn" id="wc-locate-btn" title="Use my location">⊙ Use my location</button>
               </div>
-              
-              <div class="wc-condition" id="wc-condition">Loading atmospheric matrix...</div>
+              <div class="wc-condition" id="wc-condition">Connecting telemetry...</div>
             </div>
-            
             <div class="wc-temp" id="wc-temp">--°C</div>
           </div>
 
           <div class="wc-mood">
             <div class="wc-mood-label" data-i18n="weather_mood_label">Today's Work Environment</div>
-            <div class="wc-mood-text" id="weather-status">Synchronizing horizons...</div>
+            <div class="wc-mood-text" id="weather-status">Aligning celestial coordinates...</div>
           </div>
 
           <div class="wc-stats">
@@ -126,12 +121,10 @@
               <div class="wc-stat-label">Humidity</div>
               <div class="wc-stat-value"><span id="wc-humidity">--</span>%</div>
             </div>
-            
             <div class="wc-stat">
               <div class="wc-stat-label">Wind Velocity</div>
               <div class="wc-stat-value"><span id="wc-wind">--</span> km/h</div>
             </div>
-            
             <div class="wc-stat">
               <div class="wc-stat-label">Feels Like</div>
               <div class="wc-stat-value"><span id="wc-feels">--</span>°C</div>
@@ -143,42 +136,35 @@
               <div class="wc-sun-label">🌅 Sunrise</div>
               <div class="wc-sun-val" id="wc-sunrise">--:--</div>
             </div>
-            
             <div class="wc-progress-wrap">
               <div class="wc-track">
                 <div class="wc-fill" id="wc-fill"></div>
                 <div class="wc-dot" id="wc-dot"></div>
               </div>
             </div>
-            
             <div class="wc-sun-item" style="text-align:right;">
               <div class="wc-sun-label">🌇 Sunset</div>
               <div class="wc-sun-val" id="wc-sunset">--:--</div>
             </div>
           </div>
 
-          <div class="wc-updated" id="wc-updated">Refreshing planetary data...</div>
+          <div class="wc-updated" id="wc-updated">Refreshing cosmic metrics...</div>
         </div>
-
 
         <div class="toolkit-item">
           <h3 data-i18n="schedule_title">Book a Consultation Slot</h3>
           <p class="card-text" data-i18n="schedule_text">Coordinate an analytical mapping session directly through Calendly.</p>
-          
           <button id="schedule-button" data-i18n="schedule_btn">Initialize Portal</button>
         </div>
 
       </div>
 
 
-
       <div class="resume-buttons">
         <a href="Assets/Labenslauf_sadat_mahmud.pdf" class="btn" download data-i18n="resume_en">Download Resume (EN)</a>
-        
         <a href="Assets/Labenslauf_sadat_mahmud.pdf" class="btn outline" download data-i18n="resume_de">Download Lebenslauf (DE)</a>
       </div>
     </section>
-
 
 
     <section id="about" class="section">
@@ -186,34 +172,19 @@
       <p class="card-text" data-i18n="about_text">I am a data analyst bridging the gap between numbers and strategy, optimizing analytical pathways with scalable code architectures.</p>
     </section>
 
-    <section id="projects" class="section">
-      <h2 data-i18n="nav_projects">Projects & Case Studies</h2>
-    </section>
-
-    <section id="blog" class="section">
-      <h2 data-i18n="nav_blog">Blog Posts</h2>
-    </section>
-
-    <section id="gallery" class="section">
-      <h2 data-i18n="nav_gallery">Photo Gallery</h2>
-    </section>
-
-    <section id="contact" class="section">
-      <h2 data-i18n="nav_contact">Contact</h2>
-    </section>
+    <section id="projects" class="section"><h2 data-i18n="nav_projects">Projects & Case Studies</h2></section>
+    <section id="blog" class="section"><h2 data-i18n="nav_blog">Blog Posts</h2></section>
+    <section id="gallery" class="section"><h2 data-i18n="nav_gallery">Photo Gallery</h2></section>
+    <section id="contact" class="section"><h2 data-i18n="nav_contact">Contact</h2></section>
   </main>
-
 
 
   <footer class="main-footer">
     <p data-i18n="footer_text">© <span id="year"></span> Sadat Mahmud. All rights reserved.</p>
   </footer>
 
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
-  <script src="script.js"></script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
   <script src="script.js"></script>
 
@@ -221,14 +192,12 @@
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
-        // Restricts language translations down to explicitly configured country arrays
         includedLanguages: 'en,de,bn,ar,tr,fr,zh-CN,pt',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
       }, 'google_translate_element');
     }
   </script>
-  
   <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>

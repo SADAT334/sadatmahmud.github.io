@@ -1,54 +1,46 @@
 // ============================================================================
-// SECTION 1: SYSTEM ROUTING & NAVIGATION MANAGEMENT
+// SECTION 1: GLOBAL SITE NAV AND TIME ZONE TARGETING
 // ============================================================================
-// Manages viewport scrolling behavior when navigation elements are selected.
+// Manages smooth scrolling behaviors across various section wrapper tags.
 
 document.querySelectorAll(".nav-link").forEach((btn) => {
   btn.addEventListener("click", () => {
     const target = btn.getAttribute("data-target");
     if (target) {
       const el = document.querySelector(target);
-      // Smoothly scroll down to target section block alignment
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   });
 });
 
-// Resets viewport location smoothly to the origin top layout layer
 document.getElementById("home-btn").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Structural initialization of runtime environment copyright timestamp
 document.getElementById("year").textContent = new Date().getFullYear();
 
 
 // ============================================================================
 // SECTION 2: TELEMETRY ENGINE (WEATHER REST INGESTION)
 // ============================================================================
-// Interrogates external API arrays to derive real-time coordinates and metrics.
+// Queries external API channels to retrieve local weather data safely.
 
 const weatherStatusEl = document.getElementById("weather-status");
 
 async function getWeatherData(query = "Dortmund") {
-  
-  // Explicitly defined your premium developer key inside a dedicated configuration block
+  // Your authenticated WeatherAPI system key access credential
   const myApiKey = "4604fcaa116446e1846170509260806";
-  
-  // Encapsulates the configuration parameters inside a standard HTTPS query string
   const url = `https://api.weatherapi.com/v1/forecast.json?key=${myApiKey}&q=${encodeURIComponent(query)}&days=1&aqi=no`;
   
   try {
     const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP network failure. Status: ${res.status}`);
-    
+    if (!res.ok) throw new Error("Network response encountered operational fault");
     const data = await res.json();
     
-    // Normalizes regional WeatherAPI meteorological condition categorization codes down to local animation hooks
     const code = data.current.condition.code;
     let type = "clear";
     
-    // Maps standard codes into simplified animation buckets matching your style.css rules
+    // Simplifies structural code nodes down into our semantic weather style buckets
     if ([1000].includes(code)) type = "clear";
     else if ([1003, 1006, 1009].includes(code)) type = "clouds";
     else if ([1030, 1135, 1147].includes(code)) type = "mist";
@@ -56,7 +48,6 @@ async function getWeatherData(query = "Dortmund") {
     else if ([1066, 1114, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258].includes(code)) type = "snow";
     else if ([1087, 1273, 1276, 1279, 1282].includes(code)) type = "thunderstorm";
 
-    // Returns a perfectly normalized data contract object to protect downstream UI components from crashing
     return {
       condition: type,
       description: data.current.condition.text,
@@ -70,17 +61,17 @@ async function getWeatherData(query = "Dortmund") {
       city: data.location.name,
       country: data.location.country
     };
-    
   } catch (e) {
-    console.error("Telemetry pipeline error caught successfully:", e);
-    return null; // Gracefully yields null instead of throwing an unhandled exception
+    console.error("Telemetry Pipeline Interrupted gracefully:", e);
+    return null;
   }
 }
 
+
 // ============================================================================
-// SECTION 3: SYSTEM INTEGRATION CONTROLLER
+// SECTION 3: WEB SYSTEM RENDER FORWARDER
 // ============================================================================
-// Orchestrates information dispatch from query responses out into target interface structures.
+// Dispatches async metrics payloads across independent DOM tracking nodes.
 
 async function loadWeatherSystem(query) {
   const weather = await getWeatherData(query);
@@ -89,8 +80,7 @@ async function loadWeatherSystem(query) {
   const cityEl = document.getElementById("wc-city");
   if (cityEl) cityEl.textContent = `📍 ${weather.city}, ${weather.country}`;
 
-  // Chain updates out across the DOM tree subsystems
-  updateCosmicTheme(weather.condition, weather.isDay);
+  updateCosmicThemeColors(weather.condition, weather.isDay);
   updateWeatherCardData(weather);
   generateWeatherAtmosphereEffects(weather.condition);
   updateNarrativeMoodText(weather.condition, weather.description, weather.isDay);
@@ -98,63 +88,60 @@ async function loadWeatherSystem(query) {
 
 
 // ============================================================================
-// SECTION 4: COSMIC CANVAS COLOUR ENGINE (DYNAMIC ROOT CSS OVERRIDES)
+// SECTION 4: COSMIC CANVAS COLOUR ENGINE (DYNAMIC ROOT CSS VARIABLE VARIABLE SHIFTS)
 // ============================================================================
-// Mutates foundational CSS palette variables based on environmental telemetry rules.
+// Smoothly updates variable palettes based on the weather conditions of the target city.
 
-function updateCosmicTheme(condition, isDay) {
+function updateCosmicThemeColors(condition, isDay) {
   const root = document.documentElement;
   
-  // Matrix dictionary matching weather configurations to space dust color codes
   const shifts = {
-    clear:        { g1: "#0b2e1e", g2: "#14532d", s1: "#ea580c", s2: "#f97316" }, // Emerald to Sunset Flare
-    clouds:       { g1: "#061f14", g2: "#0f3a24", s1: "#b45309", s2: "#d97706" }, // Soft Amber/Fern Muted
-    rain:         { g1: "#02140d", g2: "#052e16", s1: "#7c2d12", s2: "#9a3412" }, // Storm Charcoal Woodland
-    snow:         { g1: "#1e293b", g2: "#334155", s1: "#0f766e", s2: "#115e59" }, // Glacier Blue Frost
-    mist:         { g1: "#0f172a", g2: "#1e293b", s1: "#4338ca", s2: "#3730a3" }, // Cosmic Twilight Void
-    thunderstorm: { g1: "#020617", g2: "#0f172a", s1: "#701a75", s2: "#4a044e" }  // Dark Quasar Amethyst
+    clear:        { nebula: "#134e4a", auroraTop: "#0d9488", auroraBottom: "#a855f7" }, // Teal to Vivid Violet
+    clouds:       { nebula: "#1e1b4b", auroraTop: "#4338ca", auroraBottom: "#6366f1" }, // Moody Indigo Velvet
+    rain:         { nebula: "#06201b", auroraTop: "#0f766e", auroraBottom: "#475569" }, // Dark Sage and Charcoal Storm
+    snow:         { nebula: "#0f172a", auroraTop: "#115e59", auroraBottom: "#cbd5e1" }, // Ice Glacier Mint Core
+    mist:         { nebula: "#020617", auroraTop: "#312e81", auroraBottom: "#1e1b4b" }, // Absolute Midnight Fog
+    thunderstorm: { nebula: "#172554", auroraTop: "#581c87", auroraBottom: "#b45309" }  // Volatile Dark Electric Amber
   };
 
   const current = shifts[condition] || shifts.clear;
   
-  // Directly write settings into custom property values inside CSS root element
-  root.style.setProperty("--cosmic-green-1", current.g1);
-  root.style.setProperty("--cosmic-green-2", current.g2);
-  root.style.setProperty("--cosmic-sunset-1", current.s1);
-  root.style.setProperty("--cosmic-sunset-2", current.s2);
+  root.style.setProperty("--dynamic-nebula-glow", current.nebula);
+  root.style.setProperty("--dynamic-aurora-top", current.auroraTop);
+  root.style.setProperty("--dynamic-aurora-bottom", current.auroraBottom);
 }
 
 
 // ============================================================================
-// SECTION 5: ATMOSPHERIC PARTICLES CONSTRUCTOR (METEORS & WATER FX)
+// SECTION 5: INTERSTELLAR ATMOSPHERIC PARTICLES CONSTRUCTOR
 // ============================================================================
-// Dynamically creates elements inside the background wrapper container.
+// Spawns rich background physics particles (rain, snow, shooting stars) over the design layout.
 
 function generateWeatherAtmosphereEffects(condition) {
   const fx = document.getElementById("weather-fx");
   if (!fx) return;
-  fx.innerHTML = ""; // Wipe existing elements clean to prevent memory leaks
+  fx.innerHTML = ""; // Flushes old HTML loops out to keep memory clear
 
-  // Always retain an underlying baseline flow of cosmic shooting stars
-  const starCount = condition === "clear" ? 15 : 6;
+  // 🌠 HIGH DENSITY SHOOTING STARS: Spawns constant aesthetic cascades across all weather states
+  const starCount = condition === "clear" ? 18 : 8;
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
     star.className = "shooting-star";
-    star.style.top = Math.random() * 50 + "vh";
-    star.style.left = Math.random() * 80 + "vw";
-    star.style.animationDelay = Math.random() * 8 + "s";
-    star.style.animationDuration = 1.5 + Math.random() * 2 + "s";
+    star.style.top = Math.random() * 45 + "vh";
+    star.style.left = Math.random() * 85 + "vw";
+    star.style.animationDelay = Math.random() * 7 + "s";
+    star.style.animationDuration = 1.2 + Math.random() * 1.8 + "s";
     fx.appendChild(star);
   }
 
-  // Branch particle initialization depending on current global constraints
+  // Spawns custom secondary weather overlays depending on the current state
   if (condition === "rain") {
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 45; i++) {
       const drop = document.createElement("div");
       drop.className = "cosmic-rain";
       drop.style.left = Math.random() * 100 + "vw";
-      drop.style.animationDelay = Math.random() * 2 + "s";
-      drop.style.animationDuration = 0.5 + Math.random() * 0.5 + "s";
+      drop.style.animationDelay = Math.random() * 1.5 + "s";
+      drop.style.animationDuration = 0.4 + Math.random() * 0.4 + "s";
       fx.appendChild(drop);
     }
   } else if (condition === "thunderstorm") {
@@ -162,30 +149,22 @@ function generateWeatherAtmosphereEffects(condition) {
     flash.className = "nebula-lightning";
     fx.appendChild(flash);
   } else if (condition === "snow") {
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 30; i++) {
       const flake = document.createElement("div");
       flake.className = "cosmic-snow";
       flake.style.left = Math.random() * 100 + "vw";
-      flake.style.animationDelay = Math.random() * 4 + "s";
-      flake.style.animationDuration = 3 + Math.random() * 4 + "s";
+      flake.style.animationDelay = Math.random() * 3 + "s";
+      flake.style.animationDuration = 3.5 + Math.random() * 3.5 + "s";
       fx.appendChild(flake);
-    }
-  } else if (condition === "clouds") {
-    for (let i = 0; i < 3; i++) {
-      const cloud = document.createElement("div");
-      cloud.className = "cosmic-dust-cloud";
-      cloud.style.top = 15 + Math.random() * 40 + "vh";
-      cloud.style.animationDuration = 20 + Math.random() * 20 + "s";
-      fx.appendChild(cloud);
     }
   }
 }
 
 
 // ============================================================================
-// SECTION 6: DOM RENDER CONTROLLER (UI INJECTION)
+// SECTION 6: DATA MAPPING LOGIC LAYER
 // ============================================================================
-// Map values smoothly into user-facing presentation containers.
+// Securely inputs normalized telemetry items directly into target card elements.
 
 function updateWeatherCardData(weather) {
   const tempEl = document.getElementById("wc-temp");
@@ -200,7 +179,6 @@ function updateWeatherCardData(weather) {
   if (document.getElementById("wc-sunrise")) document.getElementById("wc-sunrise").textContent = weather.sunrise;
   if (document.getElementById("wc-sunset")) document.getElementById("wc-sunset").textContent = weather.sunset;
 
-  // Process timeline markers for solar position track bar
   const fillEl = document.getElementById("wc-fill");
   const dotEl = document.getElementById("wc-dot");
   if (fillEl && dotEl) {
@@ -208,51 +186,49 @@ function updateWeatherCardData(weather) {
     dotEl.style.left = weather.isDay ? "65%" : "0%";
   }
 
-  // Inject system timestamp signature confirmation notice
   const updEl = document.getElementById("wc-updated");
   if (updEl) {
-    updEl.textContent = "Telemetry synced: " + new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+    updEl.textContent = "Synced: " + new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
   }
 }
 
 function updateNarrativeMoodText(condition, description, isDay) {
   if (!weatherStatusEl) return;
   const metrics = {
-    clear: isDay ? "Atmosphere clear. Peak processing clarity achieved." : "Midnight orbit active. Excellent alignment for system deep-dives.",
-    clouds: "Cosmic dust screening active. Perfect conditions for data structuring.",
-    rain: "Precipitation channels open. Fluid logical integration underway.",
-    snow: "Thermal dip. Steady execution pathways running perfectly.",
-    mist: "Nebula cloud cover. Navigating vectors smoothly via raw metrics.",
-    thunderstorm: "High atmospheric charge. Exponential energy pathways initialized."
+    clear: isDay ? "Sky transparent. Optimal parameters for strategic planning data mapping." : "Night cycle stabilized. Excellent window for deep architectural engineering loops.",
+    clouds: "Interstellar cloud density high. Excellent atmospheric conditions for analytics.",
+    rain: "Precipitation lines tracking fluidly. Systems running smoothly.",
+    snow: "Thermal drop registered. Crystal clear data execution pipeline active.",
+    mist: "Nebula dust tracking across local sensors. Navigating matrix via structural metrics.",
+    thunderstorm: "High atmospheric energy matrix detected. Exponential logic execution loops running."
   };
-  weatherStatusEl.textContent = metrics[condition] || `${description}. System operational.`;
+  weatherStatusEl.textContent = metrics[condition] || `${description}. Core systems operational.`;
 }
 
 
 // ============================================================================
-// SECTION 7: CORE GEOLOCATION TRACKING SYSTEMS
+// SECTION 7: HARDWARE GEOLOCATION ACCESS PATHWAYS
 // ============================================================================
-// Handles interactive positioning coordination requests.
+// Captures user coordinates to dynamically adjust the site's environment.
 
 const locateBtn = document.getElementById("wc-locate-btn");
 if (locateBtn) {
   locateBtn.addEventListener("click", () => {
     if (!navigator.geolocation) {
-      alert("Location protocol missing in browser architecture.");
+      alert("Spatial tracking missing in current architecture.");
       return;
     }
-    locateBtn.textContent = "⏳ Interrogating Position...";
+    locateBtn.textContent = "⏳ Syncing Vector...";
     
-    // Request localized coordinate vectors from hardware endpoints
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         const queryStr = `${pos.coords.latitude},${pos.coords.longitude}`;
         await loadWeatherSystem(queryStr);
-        locateBtn.textContent = "✓ Local Horizon Matched";
-        localStorage.setItem("cosmic-location", queryStr); // Cache spatial data location references
+        locateBtn.textContent = "✓ Vector Matched";
+        localStorage.setItem("cosmic-location", queryStr);
       },
       () => {
-        alert("Location response timed out. Falling back to Dortmund Standard Vector.");
+        alert("System timed out. Retaining Dortmund Standard Baseline.");
         locateBtn.textContent = "⊙ Standard Vector";
       }
     );
@@ -261,32 +237,25 @@ if (locateBtn) {
 
 
 // ============================================================================
-// SECTION 8: APPLICATION EXECUTION INITIALIZER
+// SECTION 8: COLD BOOT INITIALIZATION LOOP (ENTRY POINT)
 // ============================================================================
-// Cold starts engine operation immediately upon environment load completion.
+// Immediately launches everything once the website is loaded.
 
-// 🌌 CORE FIX: Generates baseline cosmic shooting stars immediately so layout canvas is never left static
+// 🌌 CORE FIX: Generates baseline cosmic shooting stars instantly on startup
 generateWeatherAtmosphereEffects("clear"); 
 
-// Inspects the local storage array for past coordinates or defaults back to Dortmund standard vectors
+// Inspects cache memory arrays or falls back to Dortmund
 const activeHorizon = localStorage.getItem("cosmic-location") || "Dortmund";
-
-// Fires the global layout mapping thread pipeline
 loadWeatherSystem(activeHorizon);
 
-// ── FUNCTIONAL APPOINTMENT PORTAL CONFIGURATION ───────────────────────────
+// FUNCTIONAL INTEGRATION: Launches Calendly popup directly over your background
 const scheduleButton = document.getElementById("schedule-button");
-
 if (scheduleButton) {
-  scheduleButton.addEventListener("click", (event) => {
-    // Stops the default anchor behavior from forcing a page refresh
-    event.preventDefault(); 
-    
-    // Injects the interactive modal schedule layout seamlessly on top of your site
+  scheduleButton.addEventListener("click", (e) => {
+    e.preventDefault();
     Calendly.initPopupWidget({
-      url: 'https://calendly.com/sadatmahmud334/30min' // 👈 Paste your exact copied link here
+      url: 'https://calendly.com/sadatmahmud334/30min // 👈 Paste your exact Calendly link here!
     });
-    
     return false;
   });
 }
