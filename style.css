@@ -1,7 +1,7 @@
 /* ============================================================================
    PROJECT:  Sadat Mahmud - Professional Portfolio & Analytics Platform
    THEME:    Interstellar Cosmic Deep-Space with High-Contrast Layouts
-   VERSION:  2.1.0
+   VERSION:  2.2.1
    AUTHOR:   Sadat Mahmud
    DESIGN:   Artistic Bento Matrix Architecture with Fixed Background Anomaly
    ============================================================================ */
@@ -44,7 +44,7 @@ body {
 #cosmic-bg {
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: -4;
   pointer-events: none;
   background: radial-gradient(circle at bottom left, #050b14 0%, #020406 100%);
   overflow: hidden;
@@ -62,6 +62,7 @@ body {
     radial-gradient(1px 1px at 85% 80%, #ffffff 60%, transparent);
   background-size: 400px 400px;
   opacity: 0.45;
+  z-index: -3;
 }
 
 /* 🌌 ELEMENT 2: CHRONO-BALANCED AURORA BOREALIS LIGHT STRIPS */
@@ -76,6 +77,7 @@ body {
   opacity: 0.28;
   transform-origin: center top;
   animation: auroraWave 22s ease-in-out infinite alternate;
+  z-index: -2;
 }
 
 @keyframes auroraWave {
@@ -94,6 +96,7 @@ body {
   filter: blur(70px);
   opacity: 0.35;
   animation: nebulaPulse 18s ease-in-out infinite alternate;
+  z-index: -2;
 }
 
 @keyframes nebulaPulse {
@@ -102,26 +105,25 @@ body {
 }
 
 /* 🌌 ELEMENT 4: FIXED BACKDROP GRAVITATIONAL ANOMALY (BLACK HOLE) */
-/* Fixed safely in background layer to prevent text overlaps and visual chaos */
 .distant-black-hole {
-  position: fixed; /* Fixed position anchors it in space as the page scrolls */
-  top: 45%;
-  right: 8%;
-  width: 200px;
-  height: 200px;
+  position: fixed; 
+  top: 18%;
+  right: 4%;
+  width: 180px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   transform: rotate3d(1, 1, 1, -15deg);
-  opacity: 0.75;
-  z-index: -1; /* Keeps it strictly behind all interactive cards */
-  pointer-events: none;
+  opacity: 0.65; 
+  z-index: -3; 
+  pointer-events: none; 
 }
 
 /* The dark central gravitational core node */
 .bh-singularity {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   background: #000000;
   border-radius: 50%;
   box-shadow: 0 0 24px 8px #000000, 
@@ -133,8 +135,8 @@ body {
 /* The horizontal glowing matter disk tracking around the core edge */
 .bh-accretion-disk {
   position: absolute;
-  width: 175px;
-  height: 22px;
+  width: 160px;
+  height: 18px;
   background: linear-gradient(90deg, 
     transparent 0%, 
     rgba(254, 215, 170, 0.9) 20%, 
@@ -177,7 +179,7 @@ body {
 }
 
 .card, .toolkit-item {
-  background: rgba(8, 14, 22, 0.8); /* Darkened backdrops to maximize text visibility */
+  background: rgba(8, 14, 22, 0.82); 
   backdrop-filter: blur(20px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-prime);
@@ -203,7 +205,7 @@ body {
 
 .hero-subtitle {
   font-size: 1.2rem;
-  color: var(--text-main); /* High contrast white-gray */
+  color: var(--text-main); 
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   line-height: 1.7;
 }
@@ -287,6 +289,8 @@ body {
   color: #ffffff;
   box-shadow: 0 12px 30px rgba(249, 115, 22, 0.25);
   transition: all 0.2s ease;
+  z-index: 10; 
+  position: relative;
 }
 
 .btn:hover {
@@ -420,8 +424,10 @@ body {
 .profile-img {
   width: 100%;
   height: 100%;
-  /* ⚡️ ANTI-CROP: Scales complete asset bounds cleanly inside the circular window frame */
-  object-fit: contain; 
+  /* ⚡️ THE PERFECT FIT: 'cover' stretches the portrait to eliminate all black 
+     sidebars, while 'center 15%' protects your face from being cut off at the top! */
+  object-fit: cover; 
+  object-position: center 15%;
 }
 
 .profile-img-container:hover {
@@ -508,6 +514,8 @@ body {
   margin-top: 3.5rem;
   display: flex;
   gap: 1.5rem;
+  position: relative;
+  z-index: 10; 
 }
 
 .section {
@@ -546,6 +554,8 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   transition: background 0.2s, box-shadow 0.2s;
+  position: relative;
+  z-index: 10;
 }
 
 #schedule-button:hover {
@@ -562,11 +572,12 @@ body {
   .hero-text h1 { margin-left: auto; margin-right: auto; }
   .resume-buttons { justify-content: center; }
   .distant-black-hole { 
-    position: absolute;
-    left: 40%; 
-    top: 15%; 
-    width: 140px; 
-    height: 140px; 
+    position: fixed;
+    right: 4%; 
+    top: 6%; 
+    width: 110px; 
+    height: 110px; 
+    opacity: 0.4; 
   }
 }
 
@@ -575,7 +586,7 @@ body {
    SECTION 8: ULTRA HIGH-CONTRAST SECURE CONTACT MATRIX Styles
    ============================================================================ */
 .contact-subtitle {
-  color: #ffffff; /* Bright crisp white for high readability */
+  color: #ffffff; 
   text-shadow: 0 2px 4px rgba(0,0,0,0.8);
   font-size: 1.15rem;
   font-weight: 500;
@@ -596,8 +607,8 @@ body {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  background: #090f18; /* Solid, lightless charcoal slate kills background bleed */
-  border: 2px solid rgba(255, 255, 255, 0.18); /* Vivid borders secure shapes */
+  background: #090f18; 
+  border: 2px solid rgba(255, 255, 255, 0.18); 
   border-radius: 14px;
   padding: 1.5rem 1.25rem;
   text-decoration: none;
@@ -610,7 +621,7 @@ body {
   margin: 0 0 6px 0;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #ffffff; /* Pure, stark high-contrast white */
+  color: #ffffff; 
   letter-spacing: 0.02em;
 }
 
@@ -618,7 +629,7 @@ body {
   margin: 0;
   font-size: 0.88rem;
   font-weight: 500;
-  color: #cbd5e1; /* Vivid slate-gray */
+  color: #cbd5e1; 
   word-break: break-all;
 }
 
@@ -703,7 +714,7 @@ body {
 }
 
 .manifesto-body {
-  color: var(--text-main); /* Upgraded contrast */
+  color: var(--text-main); 
   line-height: 1.7;
   font-size: 0.95rem;
 }
@@ -833,7 +844,7 @@ body {
 }
 
 .node-content p {
-  color: var(--text-main); /* High contrast readable layout color */
+  color: var(--text-main); 
   font-size: 0.95rem;
   line-height: 1.6;
   max-width: 850px;
