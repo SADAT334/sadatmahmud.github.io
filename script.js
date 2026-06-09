@@ -1,20 +1,22 @@
+/ ============================================================================
+// SECTION 1: GLOBAL SITE NAV AND TIME ZONE TARGETING
 // ============================================================================
-// SECTION 1: NAVIGATION & TIME ZONE
-// ============================================================================
+// Manages smooth scrolling behaviors across various section wrapper tags safely.
 
 document.querySelectorAll(".nav-link").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const target = btn.getAttribute("data-target");
     
-    // Only handle if data-target exists (About, Contact) — not Projects/Blog/Gallery
+    // 💡 THE ESSENTIAL FIX: Only intercept the click if data-target exists!
     if (target) {
-      e.preventDefault();
+      e.preventDefault(); // Prevents any default jumping bugs
       const el = document.querySelector(target);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
-    // Otherwise: let default link behavior handle navigation
+    // If target is null (Projects, Blog, Gallery), this block is skipped,
+    // allowing the browser to smoothly navigate to the respective pages.
   });
 });
 
@@ -22,27 +24,31 @@ document.getElementById("home-btn").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// Automatically keeps your footer year perfectly up to date
 document.getElementById("year").textContent = new Date().getFullYear();
 
 
 // ============================================================================
-// SECTION 2: WEATHER API (WeatherAPI)
+// SECTION 2: TELEMETRY ENGINE (WEATHER REST INGESTION)
 // ============================================================================
+// Queries external API channels to retrieve local weather data safely.
 
 const weatherStatusEl = document.getElementById("weather-status");
 
 async function getWeatherData(query = "Dortmund") {
-  const apiKey = "1894d40599bd47efb88115802260906";
-  const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${encodeURIComponent(query)}&days=1&aqi=no`;
+  // Your authenticated WeatherAPI system key access credential
+  const myApiKey = "1894d40599bd47efb88115802260906git";
+  const url = `https://api.weatherapi.com/v1/forecast.json?key=${myApiKey}&q=${encodeURIComponent(query)}&days=1&aqi=no`;
   
   try {
     const res = await fetch(url);
-    if (!res.ok) throw new Error("Weather API error");
+    if (!res.ok) throw new Error("Network response encountered operational fault");
     const data = await res.json();
     
     const code = data.current.condition.code;
     let type = "clear";
     
+    // Simplifies structural code nodes down into our semantic weather style buckets
     if ([1000].includes(code)) type = "clear";
     else if ([1003, 1006, 1009].includes(code)) type = "clouds";
     else if ([1030, 1135, 1147].includes(code)) type = "mist";
@@ -64,15 +70,16 @@ async function getWeatherData(query = "Dortmund") {
       country: data.location.country
     };
   } catch (e) {
-    console.error("Weather fetch failed:", e);
+    console.error("Telemetry Pipeline Interrupted gracefully:", e);
     return null;
   }
 }
 
 
 // ============================================================================
-// SECTION 3: LOAD WEATHER SYSTEM
+// SECTION 3: WEB SYSTEM RENDER FORWARDER
 // ============================================================================
+// Dispatches async metrics payloads across independent DOM tracking nodes.
 
 async function loadWeatherSystem(query) {
   const weather = await getWeatherData(query);
@@ -89,19 +96,20 @@ async function loadWeatherSystem(query) {
 
 
 // ============================================================================
-// SECTION 4: DYNAMIC COLOR ENGINE
+// SECTION 4: COSMIC CANVAS COLOUR ENGINE (DYNAMIC ROOT CSS VARIABLE VARIABLE SHIFTS)
 // ============================================================================
+// Smoothly updates variable palettes based on the weather conditions of the target city.
 
 function updateCosmicThemeColors(condition, isDay) {
   const root = document.documentElement;
   
   const shifts = {
-    clear:        { nebula: "#134e4a", auroraTop: "#0d9488", auroraBottom: "#a855f7" },
-    clouds:       { nebula: "#1e1b4b", auroraTop: "#4338ca", auroraBottom: "#6366f1" },
-    rain:         { nebula: "#06201b", auroraTop: "#0f766e", auroraBottom: "#475569" },
-    snow:         { nebula: "#0f172a", auroraTop: "#115e59", auroraBottom: "#cbd5e1" },
-    mist:         { nebula: "#020617", auroraTop: "#312e81", auroraBottom: "#1e1b4b" },
-    thunderstorm: { nebula: "#172554", auroraTop: "#581c87", auroraBottom: "#b45309" }
+    clear:        { nebula: "#134e4a", auroraTop: "#0d9488", auroraBottom: "#a855f7" }, // Teal to Vivid Violet
+    clouds:       { nebula: "#1e1b4b", auroraTop: "#4338ca", auroraBottom: "#6366f1" }, // Moody Indigo Velvet
+    rain:         { nebula: "#06201b", auroraTop: "#0f766e", auroraBottom: "#475569" }, // Dark Sage and Charcoal Storm
+    snow:         { nebula: "#0f172a", auroraTop: "#115e59", auroraBottom: "#cbd5e1" }, // Ice Glacier Mint Core
+    mist:         { nebula: "#020617", auroraTop: "#312e81", auroraBottom: "#1e1b4b" }, // Absolute Midnight Fog
+    thunderstorm: { nebula: "#172554", auroraTop: "#581c87", auroraBottom: "#b45309" }  // Volatile Dark Electric Amber
   };
 
   const current = shifts[condition] || shifts.clear;
@@ -113,15 +121,16 @@ function updateCosmicThemeColors(condition, isDay) {
 
 
 // ============================================================================
-// SECTION 5: WEATHER EFFECTS
+// SECTION 5: INTERSTELLAR ATMOSPHERIC PARTICLES CONSTRUCTOR
 // ============================================================================
+// Spawns rich background physics particles (rain, snow, shooting stars) over the design layout.
 
 function generateWeatherAtmosphereEffects(condition) {
   const fx = document.getElementById("weather-fx");
   if (!fx) return;
-  fx.innerHTML = "";
+  fx.innerHTML = ""; // Flushes old HTML loops out to keep memory clear
 
-  // Shooting stars always present
+  // 🌠 HIGH DENSITY SHOOTING STARS: Spawns constant aesthetic cascades across all weather states
   const starCount = condition === "clear" ? 18 : 8;
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
@@ -133,7 +142,7 @@ function generateWeatherAtmosphereEffects(condition) {
     fx.appendChild(star);
   }
 
-  // Weather-specific effects
+  // Spawns custom secondary weather overlays depending on the current state
   if (condition === "rain") {
     for (let i = 0; i < 45; i++) {
       const drop = document.createElement("div");
@@ -161,8 +170,9 @@ function generateWeatherAtmosphereEffects(condition) {
 
 
 // ============================================================================
-// SECTION 6: UPDATE WEATHER CARD
+// SECTION 6: DATA MAPPING LOGIC LAYER
 // ============================================================================
+// Securely inputs normalized telemetry items directly into target card elements.
 
 function updateWeatherCardData(weather) {
   const tempEl = document.getElementById("wc-temp");
@@ -186,47 +196,48 @@ function updateWeatherCardData(weather) {
 
   const updEl = document.getElementById("wc-updated");
   if (updEl) {
-    updEl.textContent = "Updated: " + new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+    updEl.textContent = "Synced: " + new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
   }
 }
 
 function updateNarrativeMoodText(condition, description, isDay) {
   if (!weatherStatusEl) return;
   const metrics = {
-    clear: isDay ? "Sky transparent. Optimal parameters for strategic planning." : "Night cycle stabilized. Perfect for deep analysis.",
-    clouds: "Interstellar cloud density high. Excellent for analytics.",
-    rain: "Precipitation tracking smoothly. Systems running optimally.",
-    snow: "Thermal drop registered. Crystal clear execution pipeline active.",
-    mist: "Nebula dust tracking across sensors. Navigating via metrics.",
-    thunderstorm: "High atmospheric energy detected. Exponential logic loops running."
+    clear: isDay ? "Sky transparent. Optimal parameters for strategic planning data mapping." : "Night cycle stabilized. Excellent window for deep architectural engineering loops.",
+    clouds: "Interstellar cloud density high. Excellent atmospheric conditions for analytics.",
+    rain: "Precipitation lines tracking fluidly. Systems running smoothly.",
+    snow: "Thermal drop registered. Crystal clear data execution pipeline active.",
+    mist: "Nebula dust tracking across local sensors. Navigating matrix via structural metrics.",
+    thunderstorm: "High atmospheric energy matrix detected. Exponential logic execution loops running."
   };
   weatherStatusEl.textContent = metrics[condition] || `${description}. Core systems operational.`;
 }
 
 
 // ============================================================================
-// SECTION 7: GEOLOCATION
+// SECTION 7: HARDWARE GEOLOCATION ACCESS PATHWAYS
 // ============================================================================
+// Captures user coordinates to dynamically adjust the site's environment.
 
 const locateBtn = document.getElementById("wc-locate-btn");
 if (locateBtn) {
   locateBtn.addEventListener("click", () => {
     if (!navigator.geolocation) {
-      alert("Location tracking unavailable.");
+      alert("Spatial tracking missing in current architecture.");
       return;
     }
-    locateBtn.textContent = "⏳ Syncing...";
+    locateBtn.textContent = "⏳ Syncing Vector...";
     
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         const queryStr = `${pos.coords.latitude},${pos.coords.longitude}`;
         await loadWeatherSystem(queryStr);
-        locateBtn.textContent = "✓ Location Set";
+        locateBtn.textContent = "✓ Vector Matched";
         localStorage.setItem("cosmic-location", queryStr);
       },
       () => {
-        alert("Timeout. Using Dortmund baseline.");
-        locateBtn.textContent = "⊙ Standard";
+        alert("System timed out. Retaining Dortmund Standard Baseline.");
+        locateBtn.textContent = "⊙ Standard Vector";
       }
     );
   });
@@ -234,76 +245,41 @@ if (locateBtn) {
 
 
 // ============================================================================
-// SECTION 8: DAY/NIGHT BACKGROUND TRANSITION
+// SECTION 8: COLD BOOT INITIALIZATION LOOP (ENTRY POINT)
 // ============================================================================
+// Immediately launches everything once the website is loaded.
 
-function updateBackgroundByTime() {
-  const hour = new Date().getHours();
-  const root = document.documentElement;
-  
-  // Morning (5-11): Bright sunrise
-  if (hour >= 5 && hour < 7) {
-    root.style.setProperty("--bg-intensity", "0.85");
-    root.style.setProperty("--bg-hue-shift", "45deg");
-  }
-  // Day (7-17): Peak brightness
-  else if (hour >= 7 && hour < 17) {
-    root.style.setProperty("--bg-intensity", "0.95");
-    root.style.setProperty("--bg-hue-shift", "0deg");
-  }
-  // Sunset (17-19): Orange/red tones
-  else if (hour >= 17 && hour < 19) {
-    root.style.setProperty("--bg-intensity", "0.75");
-    root.style.setProperty("--bg-hue-shift", "25deg");
-  }
-  // Night (19-5): Deep dark
-  else {
-    root.style.setProperty("--bg-intensity", "0.5");
-    root.style.setProperty("--bg-hue-shift", "200deg");
-  }
-}
+// 🌌 CORE FIX: Generates baseline cosmic shooting stars instantly on startup
+generateWeatherAtmosphereEffects("clear"); 
 
-
-// ============================================================================
-// SECTION 9: INITIALIZATION
-// ============================================================================
-
-generateWeatherAtmosphereEffects("clear");
-updateBackgroundByTime();
-
+// Inspects cache memory arrays or falls back to Dortmund
 const activeHorizon = localStorage.getItem("cosmic-location") || "Dortmund";
 loadWeatherSystem(activeHorizon);
 
-// Update background every 5 minutes
-setInterval(updateBackgroundByTime, 300000);
-
-
-// ============================================================================
-// SECTION 10: CALENDLY INTEGRATION
-// ============================================================================
-
+// FUNCTIONAL INTEGRATION: Launches Calendly popup directly over your background
 const scheduleButton = document.getElementById("schedule-button");
 if (scheduleButton) {
   scheduleButton.addEventListener("click", (e) => {
     e.preventDefault();
     Calendly.initPopupWidget({
-      url: 'https://calendly.com/sadatmahmud334/30min'
+      url: 'https://calendly.com/sadatmahmud334/30min'// 👈 Paste your exact Calendly link here!
     });
     return false;
   });
 }
 
-
 // ============================================================================
-// SECTION 11: BENTO GRID MOUSE TRACKING
+// SECTION 9: BENTO GRID INTERACTIVE MOUSE TRACKING ENGINE
 // ============================================================================
+// Tracks custom cursor trajectories to map light distortion on glass matrices.
 
 document.querySelectorAll('.bento-box').forEach((box) => {
   box.addEventListener('mousemove', (e) => {
     const rect = box.getBoundingClientRect();
-    const x = e.clientX - rect.left;
+    const x = e.clientX - rect.left; // Anchor coordinates inside card container boundary
     const y = e.clientY - rect.top;
     
+    // Updates local custom property states inside target node context
     box.style.setProperty('--mouse-x', `${x}px`);
     box.style.setProperty('--mouse-y', `${y}px`);
   });
