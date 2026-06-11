@@ -666,13 +666,24 @@ body {
   background: rgba(255, 255, 255, 0.12);
 }
 .contact-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   min-width: 260px;
+}
+
+.contact-details {
+  flex: 1;          /* allows text to take full width */
+  min-width: 0;     /* REQUIRED so nowrap works inside flex */
 }
 
 .contact-details p,
 .contact-details h3 {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 
 
 
