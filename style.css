@@ -665,12 +665,15 @@ body {
   transform: scale(1.1);
   background: rgba(255, 255, 255, 0.12);
 }
+.contact-card {
+  min-width: 260px;
+}
+
 .contact-details p,
 .contact-details h3 {
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
+
 
 
 
