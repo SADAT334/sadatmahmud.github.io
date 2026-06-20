@@ -1292,6 +1292,37 @@ document.querySelectorAll('.bento-box').forEach((box) => {
   margin-bottom: 20px;
 }
 
+/* Add this to your style.css */
+.blog-container {
+    max-width: 750px; /* Constrains line length for readability */
+    margin: 0 auto;   /* Centers the content */
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.03); /* Subtle glass effect */
+    border-radius: 20px;
+    line-height: 1.8;   /* Increases readability */
+    color: #e2e8f0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.meta {
+    color: #94a3b8;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+/* Ensure the image stays within the box */
+.blog-post img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
 ---
 
 ### Key Upgrades Implemented:
