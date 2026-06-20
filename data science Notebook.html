@@ -1,10 +1,80 @@
-<main class="section" style="max-width: 800px; margin: 100px auto;">
+<style>
+  /* 1. Animated Background Wrapper */
+  .ds-hero-section {
+    position: relative;
+    padding: 80px 20px;
+    background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
+    overflow: hidden;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  /* Subtitle animation (The 'Data Science Trend' vibe) */
+  .ds-hero-section::before {
+    content: "● AI ANALYTICS ● MACHINE LEARNING ● DATA PIPELINES ●";
+    position: absolute;
+    top: 10px;
+    color: rgba(56, 189, 248, 0.2);
+    font-size: 0.8rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .glitch-title {
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  /* 2. Glassmorphism Card */
+  .news-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .news-card:hover {
+    transform: translateY(-5px);
+    border-color: #38bdf8;
+  }
+
+  .news-card h4 {
+    color: #f8fafc;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  /* 3. Professional Button */
+  .read-more-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #38bdf8;
+    color: #020617;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: background 0.3s;
+  }
+
+  .read-more-btn:hover {
+    background: #ffffff;
+  }
+</style>
+
+<main class="ds-hero-section">
   <h2 class="glitch-title">Data Science Notebook</h2>
   
-  <div class="blog-list" style="margin-top: 40px;">
-    <a href="data cleaning.html" class="bento-box" style="display:block; text-decoration:none;">
-      <h4>Why Data Cleaning Is More Important Than Choosing the Right Model</h4>
-      <p style="color: var(--text-muted);">A deep dive into Data-Centric AI principles...</p>
-    </a>
+  <div class="news-card">
+    <h4>Why Data Cleaning Is More Important Than Choosing the Right Model</h4>
+    <p style="color: #94a3b8;">A deep dive into Data-Centric AI principles and why the quality of your input defines the intelligence of your output.</p>
+    
+    <a href="data cleaning.html" class="read-more-btn">Read Investigation →</a>
   </div>
 </main>
